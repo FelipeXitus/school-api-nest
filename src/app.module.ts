@@ -14,7 +14,7 @@ import { HealthModule } from './health/health.module';
       type: 'sqlite',
       database: 'data/database.sqlite',
       entities: [Course, Student, Enrollment],
-      synchronize: true, // em produção, usar migrações
+      synchronize: true,
     }),
     CoursesModule,
     StudentsModule,
