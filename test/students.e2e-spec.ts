@@ -3,7 +3,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from '../src/app.module';
 
-describe('Courses E2E', () => {
+describe('Students E2E', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -16,33 +16,33 @@ describe('Courses E2E', () => {
     await app.init();
   });
 
-  it('/courses (POST)', async () => {
+  it('/students (POST)', async () => {
     const res = await request(app.getHttpServer())
-      .post('/courses')
-      .send({ title: 'NestJS' })
+      .post('/students')
+      .send({ name: 'Felipe', email: 'felipe@test.com' })
       .expect(201);
 
     expect(res.body).toHaveProperty('id');
   });
 
-  it('/courses (GET)', async () => {
+  it('/students (GET)', async () => {
     const res = await request(app.getHttpServer())
-      .get('/courses')
+      .get('/students')
       .expect(200);
 
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  it('/courses/:id (GET)', async () => {
+  it('/students/:id (GET)', async () => {
     const res = await request(app.getHttpServer())
-      .get('/courses/1')
+      .get('/students/1')
       .expect(200);
 
     expect(res.body).toHaveProperty('id');
   });
 
-  it('/courses/:id (DELETE)', async () => {
-    await request(app.getHttpServer()).delete('/courses/1').expect(200);
+  it('/students/:id (DELETE)', async () => {
+    await request(app.getHttpServer()).delete('/students/1').expect(200);
   });
 
   afterAll(async () => {
