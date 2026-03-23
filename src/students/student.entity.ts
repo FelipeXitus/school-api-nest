@@ -4,12 +4,10 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  Unique,
 } from 'typeorm';
 import { Enrollment } from '../enrollments/enrollment.entity';
 
 @Entity()
-@Unique(['email'])
 export class Student {
   @PrimaryGeneratedColumn()
   id: number;
@@ -17,8 +15,11 @@ export class Student {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
+
+  @Column({ nullable: true })
+  course?: string;
 
   @CreateDateColumn()
   createdAt: Date;

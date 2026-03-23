@@ -4,13 +4,11 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique,
 } from 'typeorm';
 import { Student } from '../students/student.entity';
 import { Course } from '../courses/course.entity';
 
 @Entity()
-@Unique(['studentId', 'courseId'])
 export class Enrollment {
   @PrimaryGeneratedColumn()
   id: number;
